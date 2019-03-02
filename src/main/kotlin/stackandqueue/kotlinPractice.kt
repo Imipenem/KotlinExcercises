@@ -1,3 +1,5 @@
+package stackandqueue
+
 /**
  * A simple implementation of an integer stack
  */
@@ -44,7 +46,7 @@ class Queue<E> {
      * This function weaves two queues together into one single queue
      */
 
-    fun weave(q1: Queue<out E>, q2: Queue<out E>, q3: Queue<Any?>) { //fun weave( q1:Queue<*>, q2:Queue<*>, q3:Queue<*>) -> star-notation since we know nothing about the type; similar to <out E>
+    fun weave(q1: Queue<out E>, q2: Queue<out E>, q3: Queue<Any?>) { //fun weave( q1:stackandqueue.Queue<*>, q2:stackandqueue.Queue<*>, q3:stackandqueue.Queue<*>) -> star-notation since we know nothing about the type; similar to <out E>
         while (true) {
             q1.remove()?.let { q3.add(it) }
             q2.remove()?.let { q3.add(it) }

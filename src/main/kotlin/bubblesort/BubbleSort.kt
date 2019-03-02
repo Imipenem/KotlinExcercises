@@ -1,3 +1,5 @@
+package bubblesort
+
 class BubbleSort {
 
     fun <E : Comparable<E>> bubbleSort(list: MutableList<E>): MutableList<E> {
