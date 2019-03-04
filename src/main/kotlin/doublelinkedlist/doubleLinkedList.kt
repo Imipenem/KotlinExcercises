@@ -6,15 +6,20 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
      * Insert the node at the head of the linkedList (if there´s already a head node, the node will get it´s follower)
      */
     fun insertFirst(node: Node<T>?) {
-        when (head) {
-            null -> {
+        when {
+            head == null -> {
                 head = node
                 tail = head
             }
-            else -> {
+            size() == 1 -> {
                 tail = head
                 tail?.precursor = node
                 node?.follower = tail
+                head = node
+            }
+            else -> {
+                head?.precursor = node
+                node?.follower = head
                 head = node
             }
         }
@@ -23,7 +28,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * This function returns the size of the list
      */
-    private fun size(): Int {
+     fun size(): Int {
         var currentNode = head
         var size = 0
         while (currentNode != null) {
@@ -36,7 +41,8 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * This function inserts a node at the end of the list
      */
-    private fun insertLast(node: Node<T>?) {
+     fun insertLast(node: Node<T>?) {
+        if(size() == 0) head = node
         tail?.follower = node
         node?.precursor = tail
         tail = node
@@ -63,6 +69,57 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
             }
         }
     }
+    /**
+     * This function removes removes the node form the list at the given index
+     */
+    fun removeFirst(){
+        if (size() == 1) tail = null
+        head = head?.follower
+        head?.precursor?.follower = null
+        head?.precursor = null
+    }
+    /**
+     * This function removes removes the node form the list at the given index
+     */
+    fun removeLast(){
+        if (size() == 1) head = null
+        tail = tail?.precursor
+        tail?.follower?.precursor = null
+        tail?.follower = null
+    }
+    /**
+     * This function removes removes the node form the list at the given index
+     */
+    fun removeAt(index:Int){
+        when {
+                index == 0 -> removeFirst()
+                index > size()-1 -> removeLast()
+                else -> {
+                    var currentNode = head?.follower
+                    var currentIndex = 1
+                    while (currentIndex != index) {
+                        currentNode = currentNode?.follower
+                        currentIndex++
+                    }
+                    currentNode?.follower?.precursor = currentNode?.precursor
+                    currentNode?.precursor?.follower = currentNode?.follower
+                    currentNode?.follower = null
+                    currentNode?.precursor = null
+                }
+        }
+    }
+
+    /**
+     * Little helper function for searching a node at a specific index, beginning at index 1
+     */
+    fun traverseList(index:Int){
+        var currentNode = head?.follower
+        var currentIndex = 1
+        while (currentIndex != index) {
+            currentNode = currentNode?.follower
+            currentIndex++
+        }
+    }
 }
 
 /**
@@ -80,6 +137,10 @@ fun main() {
     list.insertAt(node2, 1)
     list.insertAt(node4, 2)
     list.insertAt(node5, 0)
+    list.removeAt(1)
+    //list.insertAt(node3,12)
+    //list.insertAt(node2,1)
+    //println("Tail is: ${list.tail}")
     var testNode: Node<Int>? = list.head
     while (testNode != null) {
         println(testNode)
