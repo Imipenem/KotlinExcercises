@@ -3,7 +3,7 @@ package doublelinkedlist
 class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
 
     /**
-     * Insert the node at the head of the linkedList (if there´s already a head node, the node will get it´s follower
+     * Insert the node at the head of the linkedList (if there´s already a head node, the node will get it´s follower)
      */
     fun insertFirst(node: Node<T>?) {
         when (head) {
@@ -47,7 +47,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
      */
     fun insertAt(node: Node<T>?, index: Int) {
         when {
-            index == 0 -> insertFirst(node) //doesn't work on lists size > 1!!!!
+            index == 0 -> insertFirst(node)
             index > size() - 1 -> insertLast(node)
             else -> {
                 var currentNode = head
