@@ -95,16 +95,11 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
                 index == 0 -> removeFirst()
                 index > size()-1 -> removeLast()
                 else -> {
-                    var currentNode = head?.follower
-                    var currentIndex = 1
-                    while (currentIndex != index) {
-                        currentNode = currentNode?.follower
-                        currentIndex++
-                    }
-                    currentNode?.follower?.precursor = currentNode?.precursor
-                    currentNode?.precursor?.follower = currentNode?.follower
-                    currentNode?.follower = null
-                    currentNode?.precursor = null
+                    val node = traverseList(index)
+                    node?.follower?.precursor = node?.precursor
+                    node?.precursor?.follower = node?.follower
+                    node?.follower = null
+                    node?.precursor = null
                 }
         }
     }
@@ -112,13 +107,14 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * Little helper function for searching a node at a specific index, beginning at index 1
      */
-    fun traverseList(index:Int){
+    fun traverseList(index:Int):Node<T>?{
         var currentNode = head?.follower
         var currentIndex = 1
         while (currentIndex != index) {
             currentNode = currentNode?.follower
             currentIndex++
         }
+        return currentNode
     }
 }
 
