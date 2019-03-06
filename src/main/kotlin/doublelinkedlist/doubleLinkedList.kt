@@ -93,7 +93,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     fun removeAt(index:Int){
         when {
                 index == 0 -> removeFirst()
-                index > size()-1 -> removeLast()
+                index >= size()-1 -> removeLast()
                 else -> {
                     val node = traverseList(index)
                     node?.follower?.precursor = node?.precursor
@@ -115,6 +115,18 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
             currentIndex++
         }
         return currentNode
+    }
+    /**
+     * Little helper function for getting all values of the nodes in the list
+     */
+    fun traverseListForValues():List<T>{
+        val list = mutableListOf<T>()
+        var currentNode = head
+        while(currentNode!=null){
+            list.add(currentNode.value)
+            currentNode = currentNode.follower
+        }
+        return list
     }
 }
 
