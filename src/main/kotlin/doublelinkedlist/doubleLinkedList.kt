@@ -105,6 +105,38 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     }
 
     /**
+     * Get the node at the given index
+     */
+
+    fun getAt(index: Int): Node<T>? {
+        var currentIndex = 0
+        var currentNode = head
+        if (index > size()) return tail
+
+        while (currentIndex != index) {
+            currentNode = currentNode?.follower
+            currentIndex++
+        }
+        return currentNode
+    }
+
+    /**
+     * Set the node´s value at the given index
+     */
+
+    fun setAt(index: Int, value: T) {
+        var currentIndex = 0
+        var currentNode = head
+        if (index > size()) tail?.value = value
+
+        while (currentIndex != index) {
+            currentNode = currentNode?.follower
+            currentIndex++
+        }
+        currentNode?.value = value
+    }
+
+    /**
      * Little helper function for searching a node at a specific index, beginning at index 1
      */
     fun traverseList(index:Int):Node<T>?{
