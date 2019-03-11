@@ -1,6 +1,7 @@
 package doublelinkedlist
 
-class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
+class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) : Iterable<Node<T>> {
+
 
     /**
      * Insert the node at the head of the linkedList (if there´s already a head node, the node will get it´s follower)
@@ -28,7 +29,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * This function returns the size of the list
      */
-     fun size(): Int {
+    fun size(): Int {
         var currentNode = head
         var size = 0
         while (currentNode != null) {
@@ -41,8 +42,8 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * This function inserts a node at the end of the list
      */
-     fun insertLast(node: Node<T>?) {
-        if(size() == 0) head = node
+    fun insertLast(node: Node<T>?) {
+        if (size() == 0) head = node
         tail?.follower = node
         node?.precursor = tail
         tail = node
@@ -69,38 +70,41 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
             }
         }
     }
+
     /**
      * This function removes removes the node form the list at the given index
      */
-    fun removeFirst(){
+    fun removeFirst() {
         if (size() == 1) tail = null
         head = head?.follower
         head?.precursor?.follower = null
         head?.precursor = null
     }
+
     /**
      * This function removes removes the node form the list at the given index
      */
-    fun removeLast(){
+    fun removeLast() {
         if (size() == 1) head = null
         tail = tail?.precursor
         tail?.follower?.precursor = null
         tail?.follower = null
     }
+
     /**
      * This function removes removes the node form the list at the given index
      */
-    fun removeAt(index:Int){
+    fun removeAt(index: Int) {
         when {
-                index == 0 -> removeFirst()
-                index >= size()-1 -> removeLast()
-                else -> {
-                    val node = traverseList(index)
-                    node?.follower?.precursor = node?.precursor
-                    node?.precursor?.follower = node?.follower
-                    node?.follower = null
-                    node?.precursor = null
-                }
+            index == 0 -> removeFirst()
+            index >= size() - 1 -> removeLast()
+            else -> {
+                val node = traverseList(index)
+                node?.follower?.precursor = node?.precursor
+                node?.precursor?.follower = node?.follower
+                node?.follower = null
+                node?.precursor = null
+            }
         }
     }
 
@@ -139,7 +143,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
     /**
      * Little helper function for searching a node at a specific index, beginning at index 1
      */
-    fun traverseList(index:Int):Node<T>?{
+    fun traverseList(index: Int): Node<T>? {
         var currentNode = head?.follower
         var currentIndex = 1
         while (currentIndex != index) {
@@ -148,17 +152,37 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
         }
         return currentNode
     }
+
     /**
      * Little helper function for getting all values of the nodes in the list
      */
-    fun traverseListForValues():List<T>{
+    fun traverseListForValues(): List<T> {
         val list = mutableListOf<T>()
         var currentNode = head
-        while(currentNode!=null){
+        while (currentNode != null) {
             list.add(currentNode.value)
             currentNode = currentNode.follower
         }
         return list
+    }
+
+    override fun iterator() = object : Iterator<Node<T>> {
+        var node = head
+        override fun hasNext() = node != null
+
+        override fun next(): Node<T> {
+            val currentNode = node
+            node = node?.follower
+            return currentNode!!
+        }
+
+        operator fun plus(list: DoubleLinkedList<T>): DoubleLinkedList<T> {
+            val result = DoubleLinkedList<T>(null, null)
+
+            forEach { result.insertLast(it) }
+            list.forEach { result.insertLast(it) }
+            return result
+        }
     }
 }
 
@@ -167,23 +191,21 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) {
  */
 fun main() {
     val list = DoubleLinkedList<Int>(null, null)
+    val list2 = DoubleLinkedList<Int>(null, null)
     val node = Node(null, null, 1)
     val node2 = Node(null, null, 2)
     val node3 = Node(null, null, 3)
     val node4 = Node(null, null, 4)
     val node5 = Node(null, null, 5)
-    list.insertFirst(node)
-    list.insertAt(node3, 5)
-    list.insertAt(node2, 1)
-    list.insertAt(node4, 2)
-    list.insertAt(node5, 0)
-    list.removeAt(1)
-    //list.insertAt(node3,12)
-    //list.insertAt(node2,1)
-    //println("Tail is: ${list.tail}")
-    var testNode: Node<Int>? = list.head
-    while (testNode != null) {
-        println(testNode)
-        testNode = testNode.follower
+    list.insertLast(node)
+    list.insertLast(node2)
+    list.insertLast(node3)
+    list2.insertLast(node4)
+    list2.insertLast(node5)
+
+    val result = list + list2
+    for (node_ in result) {
+        println(node_)
     }
-}
+    }
+
