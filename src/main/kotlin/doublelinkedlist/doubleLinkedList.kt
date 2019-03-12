@@ -44,6 +44,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) : Iterable<Nod
      */
     fun insertLast(node: Node<T>?) {
         if (size() == 0) head = node
+
         tail?.follower = node
         node?.precursor = tail
         tail = node
@@ -175,14 +176,14 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) : Iterable<Nod
             node = node?.follower
             return currentNode!!
         }
+    }
 
-        operator fun plus(list: DoubleLinkedList<T>): DoubleLinkedList<T> {
-            val result = DoubleLinkedList<T>(null, null)
+    operator fun plus(list: DoubleLinkedList<T>): DoubleLinkedList<T> {
+        val result = DoubleLinkedList<T>(null, null)
 
-            forEach { result.insertLast(it) }
-            list.forEach { result.insertLast(it) }
-            return result
-        }
+        forEach { result.insertLast(it) }
+        list.forEach { result.insertLast(it) }
+        return result
     }
 }
 
@@ -207,5 +208,5 @@ fun main() {
     for (node_ in result) {
         println(node_)
     }
-    }
+}
 
