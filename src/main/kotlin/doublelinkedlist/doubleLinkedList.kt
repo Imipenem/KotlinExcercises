@@ -188,25 +188,10 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) : Iterable<Nod
 }
 
 /**
- * Little test main()
+ * Little test adddigits.main()
  */
 fun main() {
-    val list = DoubleLinkedList<Int>(null, null)
-    val list2 = DoubleLinkedList<Int>(null, null)
-    val node = Node(null, null, 1)
-    val node2 = Node(null, null, 2)
-    val node3 = Node(null, null, 3)
-    val node4 = Node(null, null, 4)
-    val node5 = Node(null, null, 5)
-    list.insertLast(node)
-    list.insertLast(node2)
-    list.insertLast(node3)
-    list2.insertLast(node4)
-    list2.insertLast(node5)
-
-    val result = list + list2
-    for (node_ in result) {
-        println(node_)
-    }
+    println(10*0.1)
+    println(0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1+0.1)
 }
 
