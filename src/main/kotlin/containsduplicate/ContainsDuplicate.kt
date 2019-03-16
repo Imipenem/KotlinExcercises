@@ -32,8 +32,19 @@ class ContainsDuplicate<T>{
         return false
     }
 
-    //this can also be solved using a var to keep track of the current index (will most likely work better with arrays)
-    
+    fun hasDuplicateIII(elements: Array<T>, k:Int):Boolean {
+        val map = HashMap<T,Int>()
+
+        for (i in 0 until elements.size){
+            if (map.containsKey(elements[i]) && Math.abs(map[elements[i]]!!.minus(i)) >= k) {
+                return true
+            }
+            else {
+                map[elements[i]] = i
+            }
+        }
+        return false
+    }
 }
 
 fun main(){
@@ -54,4 +65,11 @@ fun main(){
     println(obj.hasDuplicateII(arrayOf(500,2,3,10,4,5,6,7,8,9,10),7))
     println(obj.hasDuplicateII(arrayOf(500,2,3,10,4,2,6,7,8,2,10),5))
     println(obj.hasDuplicateII(arrayOf(500,2,2,10,4,5,6,7,2,9,10),15))
+
+    println(obj.hasDuplicateIII(arrayOf(1,2,3,4,5,6,7,8,9,10),7))
+    println(obj.hasDuplicateIII(arrayOf(1,2,3,4,5,6,6,8,9,10),10))
+    println(obj.hasDuplicateIII(arrayOf(0,2,3,4,5,6,7,8,9,0),6))
+    println(obj.hasDuplicateIII(arrayOf(500,2,3,10,4,5,6,7,8,9,10),7))
+    println(obj.hasDuplicateIII(arrayOf(500,2,3,10,4,2,6,7,8,2,10),5))
+    println(obj.hasDuplicateIII(arrayOf(500,2,2,10,4,5,6,7,2,9,10),15))
 }
