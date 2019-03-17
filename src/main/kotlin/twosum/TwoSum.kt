@@ -3,7 +3,7 @@ import sumzero.Pair
 
 class TwoSum {
 
-    fun twosum(list:Array<Int>, target:Int):Pair<Int>{
+    fun twosum(list:Array<Int>, target:Int):Pair<Int>?{
         val map = HashMap<Int,Int>()
         for(i in 0 until list.size){
             if (map.containsKey(target-list[i])){
@@ -13,7 +13,7 @@ class TwoSum {
                 map[list[i]] = i
             }
         }
-        return Pair(Int.MIN_VALUE, Int.MAX_VALUE)
+        return null
     }
 }
 
