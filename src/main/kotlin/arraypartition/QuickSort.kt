@@ -34,6 +34,20 @@ class QuickSort<T : Comparable<T>> {
         }
     }
 
+    fun kthLargestElement(array: Array<T>, left: Int, right: Int, k:Int):T{
+        val index = partition (array, left, right)
+
+        if(index == k - 1){
+            return array[k-1]
+        }
+        if(k-1 < index) { // 2) Sorting left half
+           return kthLargestElement(array, left, index-1,k)
+        }
+        else { // 3) Sorting right half
+            return kthLargestElement(array,index+1, right,k)
+        }
+    }
+
     fun partition(array: Array<T>, l: Int, r: Int): Int {
         var left = l
         var right = r
@@ -66,12 +80,16 @@ fun main() {
     for (e in obj.quickSort(listOf('M', 'O', 'N', 'E', 'R', 'O', 'O', 'O'))) {
         print("$e ")
     }
-    println("\n------------------------------------")
+    println("\n-------QuickSort Integer-----------------")
     val list = arrayOf(100, 104, 563, 900, 42, 57, 8, 6, 6, 234, 357, 789)
     obj2.quicksort(list,0,list.size-1)
     for (e in list) {
         print("$e ")
     }
+
+    val obj3 = QuickSort<Int>()
+    println("\n--------Find k-th smallest element-------------")
+    println(obj3.kthLargestElement(arrayOf(100, 104, 563, 900, 42, 57, 8, 6, 6, 234, 357, 789),0,list.size-1,4))
 }
 
 
