@@ -9,6 +9,9 @@ fun noThree(n: Int) {
     }
 }
 
+fun minCoins(n: Int, S: Int) = if (S % n == 0) (S / n) else (S / n) + 1
+
 fun main(args: Array<String>) {
-    noThree(readLine()!!.toInt())
+    val s = readLine()!!.split(" ")
+    println(minCoins(s[0].toInt(), s[1].toInt()))
 }
