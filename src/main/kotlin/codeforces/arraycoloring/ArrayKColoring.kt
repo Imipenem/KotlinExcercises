@@ -22,7 +22,7 @@ fun colorArray(n:Int, k:Int, array:List<String>){
     for(e in array){
         val es = e.toInt()
         println("${((mapIndices[es]!!)%k)+1}")
-        mapIndices.put(es,((mapIndices.getValue(es)%k+1)))
+        mapIndices[es] = ((mapIndices.getValue(es)%k+1))
     }
 }
 
