@@ -188,7 +188,7 @@ class DoubleLinkedList<T>(var head: Node<T>?, var tail: Node<T>?) : Iterable<Nod
 }
 
 /**
- * Little test adddigits.main()
+ * Little test misc.adddigits.main()
  */
 fun main() {
     println(10*0.1)
