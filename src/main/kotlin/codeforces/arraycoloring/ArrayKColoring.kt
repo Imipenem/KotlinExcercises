@@ -1,4 +1,4 @@
-package arraycoloring
+package codeforces.arraycoloring
 
 fun colorArray(n:Int, k:Int, array:List<String>){
 

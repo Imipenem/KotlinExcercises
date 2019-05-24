@@ -1,4 +1,4 @@
-package findpair
+package codeforces.findpair
 
 fun findPair(){
 

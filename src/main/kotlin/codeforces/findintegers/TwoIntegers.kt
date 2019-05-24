@@ -1,4 +1,4 @@
-package findintegers
+package codeforces.findintegers
 
 fun findTwoIntegers(list: List<String>) {
     val permutation = list.groupingBy { it.toInt() }.eachCount()

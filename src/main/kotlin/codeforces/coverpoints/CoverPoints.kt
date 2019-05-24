@@ -1,4 +1,4 @@
-package coverpoints
+package codeforces.coverpoints
 
 import kotlin.math.max
 

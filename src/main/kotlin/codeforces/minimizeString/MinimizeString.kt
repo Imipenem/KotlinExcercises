@@ -1,4 +1,4 @@
-package minimizeString
+package codeforces.minimizeString
 
 fun minimize(s:String):String{
     for((ind, i) in (1 until s.length).withIndex()){

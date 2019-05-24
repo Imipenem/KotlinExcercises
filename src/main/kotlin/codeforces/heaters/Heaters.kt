@@ -1,4 +1,4 @@
-package heaters
+package codeforces.heaters
 
 fun countHeaters(n:Int,v:Int,array:List<String>):Int{
      var lastHeater = -1

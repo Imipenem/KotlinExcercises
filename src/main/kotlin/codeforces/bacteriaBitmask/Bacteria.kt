@@ -1,4 +1,4 @@
-package bacteriaBitmask
+package codeforces.bacteriaBitmask
 
 class Bacteria {
 

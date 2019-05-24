@@ -1,4 +1,4 @@
-package powerOfTwo
+package codeforces.powerOfTwo
 
 class PowerOfTwo {
 

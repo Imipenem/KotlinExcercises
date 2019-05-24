@@ -1,4 +1,4 @@
-package luckyNumbers
+package codeforces.luckyNumbers
 
 class LuckyNumbers {
     fun indexLucky(n:String):String{

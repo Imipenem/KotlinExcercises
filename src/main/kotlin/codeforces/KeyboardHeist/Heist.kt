@@ -1,4 +1,4 @@
-package KeyboardHeist
+package codeforces.KeyboardHeist
 
 fun originalKeyboards(max: Int, min: Int, n: Int) = (max + 1) - min - n
 
