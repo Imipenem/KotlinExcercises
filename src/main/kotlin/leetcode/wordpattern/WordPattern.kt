@@ -1,5 +1,9 @@
 package leetcode.wordpattern
 
+/*
+    Leetcode Exercise: 290. Word Pattern
+ */
+
 
 fun matchesPattern(pattern:String, str:String):Boolean{
     val map = hashMapOf<Char,String>()

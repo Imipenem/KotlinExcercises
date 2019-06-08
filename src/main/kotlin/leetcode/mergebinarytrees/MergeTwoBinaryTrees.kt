@@ -5,6 +5,10 @@ class TreeNode(var `val`: Int) {
          var right: TreeNode? = null
 }
 
+/*
+    LeetCode Exercise: 617. Merge Two Binary Trees
+ */
+
 fun mergeTwoBinaryTrees(t1: TreeNode?, t2: TreeNode?):TreeNode?{
     if(t1 == null) return t2
     else if(t2 == null) return t1

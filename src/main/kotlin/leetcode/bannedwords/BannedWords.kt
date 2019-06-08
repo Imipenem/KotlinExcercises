@@ -1,5 +1,9 @@
 package leetcode.bannedwords
 
+/*
+    LeetCode Excercise: 819. Most Common Word
+ */
+
 fun count(s:String,a:Array<String>):String{
     var currMax = 0
     var maxWord = ""

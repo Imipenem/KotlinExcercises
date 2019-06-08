@@ -1,5 +1,8 @@
 package leetcode.toeplitzmatrix
 
+/*
+    Checks of a matrix is a Toeplitz Matrix : LeetCode Exercise
+ */
 fun isToeplitzMatrix(matrix: Array<IntArray>): Boolean {
 
     if(matrix.size == 1 || matrix[0].size == 1) return true
