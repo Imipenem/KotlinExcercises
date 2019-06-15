@@ -8,7 +8,7 @@ fun canPlace(flowerbed: IntArray, n: Int):Boolean{
     for(i in 0 until flowerbed.size){
         if(flowerbed[i] == 1) continue
 
-        if(flowerbed[i] == 0){
+        if(i == 0){
             if (flowerbed.size == 1 || flowerbed[i + 1] == 0){
                 flowerbed[i] = 1
                 actualCount++
@@ -33,6 +33,6 @@ fun canPlace(flowerbed: IntArray, n: Int):Boolean{
 
 
 fun main(){
-    println(canPlace(intArrayOf(1,0,0,0,1),1))
+    println(canPlace(intArrayOf(1),1))
     println(canPlace(intArrayOf(1,0,0,0,1),2))
 }
