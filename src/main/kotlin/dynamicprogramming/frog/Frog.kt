@@ -7,7 +7,6 @@ fun frog(nums:IntArray):Int{
     when(nums.size){
         in 0..1 -> return 0
         2 -> return Math.abs(nums[0] - nums[1])
-        3 -> return Math.abs(nums[0]- nums[2])
     }
 
     val size = nums.size
@@ -23,7 +22,7 @@ fun frog(nums:IntArray):Int{
      */
 
     for(i in 2 until size){
-        dp.add(i, min(dp[i-1]+ Math.abs(nums[i] - nums[i-1]), dp[i-2] + Math.abs(nums[i] - nums[i-2])))
+        dp.add(i, min(dp[i-1] + Math.abs(nums[i] - nums[i-1]), dp[i-2] + Math.abs(nums[i] - nums[i-2])))
     }
     return dp[size - 1]
 }
@@ -31,5 +30,5 @@ fun frog(nums:IntArray):Int{
 
 
 fun main(){
-    println(frog(intArrayOf(10,30,40,20)))
+    println(frog(intArrayOf(10,10,90)))
 }
