@@ -16,5 +16,5 @@ fun validMountainArray(A: IntArray): Boolean {
 }
 
 fun main(){
-
+print(validMountainArray(intArrayOf(1,2,3)))
 }
