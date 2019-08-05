@@ -19,7 +19,35 @@ fun isPalindrome(s: String): Boolean {
     return true
 }
 
+fun helpCheckPalindrom(s: String): Boolean {
+    var l = 0
+    var r = s.length - 1
+
+    while (l < r) {
+        if (s[l] != s[r]) return false
+        r--
+        l++
+    }
+    return true
+}
+
+fun validPalindrome(s: String): Boolean {
+
+    var l = 0
+    var r = s.length - 1
+
+    while (l < r) {
+
+        if (s[l] != s[r]) return helpCheckPalindrom(s.substring(l, r)) || helpCheckPalindrom(s.substring(l + 1, r + 1))
+        else {
+            l++
+            r--
+        }
+    }
+    return true
+}
+
 
 fun main(){
-    println(isPalindrome("ab2a"))
+    println(validPalindrome("aguokepatgbnvfqmgmlcupuufxoohdfpgjdmysgvhmvffcnqxjjxqncffvmhvgsymdjgpfdhooxfuupuculmgmqfvnbgtapekouga"))
 }
