@@ -59,4 +59,5 @@ fun main() {
 
     println(map.getValue("VierterEintrag"))
     println(map.getValue("DrotterEintrag"))
+    val s = HashMap<Int, Int>()
 }
