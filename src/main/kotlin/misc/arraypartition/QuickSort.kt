@@ -89,7 +89,7 @@ fun main() {
 
     val obj3 = QuickSort<Int>()
     println("\n--------Find k-th smallest element-------------")
-    println(obj3.kthLargestElement(arrayOf(3, 2, 3, 1, 2, 4, 5, 5, 6), 0, 9, 4))
+    println(obj3.kthLargestElement(arrayOf(100, 104, 563, 900, 42, 57, 8, 6, 6, 234, 357, 789),0,list.size-1,4))
 }
 
 
