@@ -110,17 +110,101 @@ class MinHeap {
         heap[firstInd] = heap[secInd]
         heap[secInd] = temp
     }
+
+    /**
+     * Repeat until theres no leftChild (and thus 100% NO RIGHT CHILD (because we´re in a complete binary tree)) or both childs are
+     * greater than me:
+     * Take the lesser of the two childs (left as default) and swap them into the pos of me (I was the rightmost ("last") node that has been
+     * taken as the "new root" after removing top element
+     */
+    private fun heapifyDownBuild(index: Int, array: IntArray) {
+        var ind = index
+
+        while (hasLeftChildt(ind, array)) {
+
+            var smallerChildInd = getLeftChildrenIndex(ind)
+
+            if (hasRightChildt(ind, array) && array[getRightChildrenIndex(ind)] < array[smallerChildInd]) {
+                smallerChildInd = getRightChildrenIndex(ind)
+            }
+
+            if (array[ind] < array[smallerChildInd]) break
+            else swaphere(ind, smallerChildInd, array)
+
+            ind = smallerChildInd
+        }
+    }
+
+    private fun heapifyDownSort(array: IntArray, lim: Int) {
+        var ind = 0
+
+        while (ind < lim && hasLeftChildtt(ind, array, lim + 1)) {
+
+            var smallerChildInd = getLeftChildrenIndex(ind)
+
+            if (hasRightChildtt(ind, array, lim) && array[getRightChildrenIndex(ind)] < array[smallerChildInd]) {
+                smallerChildInd = getRightChildrenIndex(ind)
+            }
+
+            if (array[ind] < array[smallerChildInd]) break
+            else swaphere(ind, smallerChildInd, array)
+
+            ind = smallerChildInd
+        }
+    }
+
+    private fun swaphere(firstInd: Int, secInd: Int, array: IntArray) {
+        val temp = array[firstInd]
+        array[firstInd] = array[secInd]
+        array[secInd] = temp
+    }
+
+    private fun hasLeftChildt(index: Int, array: IntArray) = getLeftChildrenIndex(index) < array.size
+
+    private fun hasLeftChildtt(index: Int, array: IntArray, lim: Int) = getLeftChildrenIndex(index) < lim
+
+    private fun hasRightChildt(index: Int, array: IntArray) = getRightChildrenIndex(index) < array.size
+    private fun hasRightChildtt(index: Int, array: IntArray, lim: Int) = getRightChildrenIndex(index) <= lim
+
+
+    private fun hasParentt(index: Int, array: IntArray) = getParentIndex(index) >= 0
+
+    private fun leftChildt(index: Int, array: IntArray) = array[getLeftChildrenIndex(index)]
+
+    private fun rightChildt(index: Int, array: IntArray) = array[getRightChildrenIndex(index)]
+
+    private fun parentt(index: Int, array: IntArray) = array[getParentIndex(index)]
+
+    fun buildHeap(array: IntArray) {
+        for (i in array.size / 2 downTo 0) {
+            heapifyDownBuild(i, array)
+        }
+    }
+
+    fun heapSort(array: IntArray) {
+        for (i in array.size - 1 downTo 1) {
+            swaphere(0, i, array)
+            heapifyDownSort(array, i - 1)
+        }
+    }
 }
 
 fun main() {
     val minHeap = MinHeap()
-    minHeap.add(17)
-    minHeap.add(12)
-    minHeap.add(15)
-    minHeap.add(10)
-    minHeap.add(5)
+    val array = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    minHeap.buildHeap(array)
+    minHeap.heapSort(array)
+    for (e in array) {
+        println(e)
+    }
 
-    println(minHeap.peek())
-    minHeap.remove()
-    println(minHeap.peek())
+    //minHeap.add(17)
+    //minHeap.add(12)
+    //minHeap.add(15)
+    //minHeap.add(10)
+    //minHeap.add(5)
+
+    //println(minHeap.peek())
+    //minHeap.remove()
+    //println(minHeap.peek())
 }
